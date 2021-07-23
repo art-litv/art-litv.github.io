@@ -31,7 +31,7 @@
         font-size: 18px;
         line-height: 40px;
         text-transform: uppercase;
-        color: #1967FA;
+        color: #1967fa;
     }
 
     &__image {
@@ -46,7 +46,7 @@
     }
 
     &::after {
-        content: url('../icons/card-decoration.svg');
+        content: url('./icons/card-decoration.svg');
         width: 25px;
         height: 25px;
         position: absolute;

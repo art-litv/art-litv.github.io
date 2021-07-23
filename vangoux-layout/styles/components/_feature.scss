@@ -25,7 +25,7 @@
     &__heading {
         display: flex;
         align-items: center;
-        background-color: #F3F7FF;
+        background-color: #f3f7ff;
     }
 
     &__title {
@@ -46,7 +46,7 @@
     }
 
     &::after {
-        content: url('../icons/card-decoration.svg');
+        content: url('./icons/card-decoration.svg');
         width: 25px;
         height: 25px;
         position: absolute;
