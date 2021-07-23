@@ -1,6 +1,6 @@
 # 🗺️ Vangoux website layout
 
-  <img  src="./layout-images/image-desktop.png"  width="500">
+  <img  src="./layout-images/image-desktop.png"  width="1000">
 
 ### 🔗 [Project layout link](https://art-litv.github.io/vangoux-layout/)
 
