@@ -4,7 +4,7 @@
 
 ### 🔗 [Project layout link](https://art-litv.github.io/foundation-layout/)
 
-📏 Layout supports mobile (320) and desktop (1400) versions
+📏 Layout supports mobile (up-to-1399) and desktop (up-to-1400) versions
 
 ### 🧰 The tech stack is:
 
