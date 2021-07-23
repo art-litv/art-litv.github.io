@@ -1,0 +1,45 @@
+.headline {
+    padding: 0 calc-mobile-padding(80);
+    margin-top: 80px;
+    position: relative;
+    z-index: 1;
+
+    @include desktop {
+        padding: 0 calc-desktop-padding(160);
+        margin-top: 150px;
+    }
+
+    &__title {
+        margin: 0 0 20px;
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 60px;
+        letter-spacing: 1px;
+        max-width: 600px;
+    }
+
+    &__description {
+        margin: 0 0 40px;
+        font-size: 20px;
+        line-height: 40px;
+        max-width: 600px;
+    }
+
+    &__image {
+        width: 599px;
+        max-width: 100%;
+        height: auto;
+        position: absolute;
+        top: 126%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: -1;
+
+        @include desktop {
+            top: 50px;
+            left: auto;
+            transform: none;
+            right: calc-desktop-padding(160);
+        }
+    }
+}

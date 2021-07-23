@@ -1,0 +1,9 @@
+@use "sass:math";
+
+@function calc-mobile-padding($padding) {
+    @return math.div($padding, $mobile-layout-width) * 100%;
+}
+
+@function calc-desktop-padding($padding) {
+    @return math.div($padding, $desktop-layout-width) * 100%;
+}

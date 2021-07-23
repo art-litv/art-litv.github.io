@@ -1,0 +1,20 @@
+.footer-logo {
+
+    display: flex;
+    align-items: flex-start;
+
+    @include desktop {
+        margin-top: 10px;
+    }
+
+    &__text {
+        width: 200px;
+        height: 50px;
+        font-size: 14px;
+        line-height: 50px;
+        font-weight: 600;
+        text-align: center;
+        color: $base-color;
+        background: rgba(25, 104, 252, 0.05);
+    }
+}

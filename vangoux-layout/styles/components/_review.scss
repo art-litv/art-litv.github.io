@@ -1,0 +1,75 @@
+.review {
+    width: 100%;
+    min-height: 280px;
+    background: #fff;
+    filter: drop-shadow(0px 20px 60px rgba(25, 104, 252, 0.1));
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px;
+
+    &__info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        position: relative;
+    }
+
+    &__heading {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    &__personal {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__name {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 30px;
+    }
+
+    &__position {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 30px;
+        color: $text-blue-color;
+        opacity: 0.8;
+    }
+
+    &__quotes {
+        width: 60px;
+        height: 46px;
+        position: absolute;
+        top: 40px;
+        right: 40px;
+    }
+
+    &__text {
+        max-width: 460px;
+        font-size: 16px;
+        line-height: 30px;
+
+        &_desktop {
+            display: none;
+
+            @include desktop {
+                display: block;
+            }
+        }
+
+        &_mobile {
+            @include desktop {
+                display: none;
+            }
+        }
+    }
+
+    &__heading {
+        display: flex;
+    }
+}

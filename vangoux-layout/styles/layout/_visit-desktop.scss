@@ -1,0 +1,26 @@
+.visit-desktop {
+    min-height: 180px;
+    padding: 30px 60px;
+    margin-top: 520px;
+    background: url('https://gromcode.s3.eu-central-1.amazonaws.com/front-end/html-css/lesson26/hw1/PleaseVisitDesktopSiteSectionBackground.png');
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: $text-white-color;
+    /* For upper image not to cover the block */
+    z-index: 1;
+    position: relative;
+
+    @include desktop {
+        display: none;
+    }
+
+    &__text {
+        max-width: 520px;
+    }
+}

@@ -1,0 +1,31 @@
+.users {
+    margin-top: 125px;
+    padding: 0 calc-mobile-padding(60);
+
+    @include desktop {
+        margin-top: 120px;
+        padding: 0 calc-desktop-padding(160);
+    }
+
+    &__title-desktop {
+        display: none;
+
+        @include desktop {
+            display: block;
+        }
+    }
+
+    &__title {
+        @include desktop {
+            display: none;
+        }
+    }
+
+    &__cases {
+        margin-top: 28px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+}

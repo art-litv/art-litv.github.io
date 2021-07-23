@@ -1,0 +1,12 @@
+.page {
+    background: linear-gradient(180deg, rgba(25, 104, 252, 0.0001) 0%, rgba(25, 104, 252, 0.05) 23.07%, rgba(25, 104, 252, 0.0001) 99.94%, rgba(25, 104, 252, 0.05) 100%);
+    padding-top: 40px;
+
+    @include desktop {
+        background: url('https://gromcode.s3.eu-central-1.amazonaws.com/front-end/html-css/lesson26/hw1/BackgroundDecor.png');
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: contain;
+        padding-top: 30px;
+    }
+}

@@ -1,0 +1,56 @@
+.workflow {
+    margin-top: 120px;
+    padding: 0 calc-mobile-padding(60);
+
+    @include desktop {
+        padding: 0 calc-desktop-padding(160);
+    }
+
+    &__steps {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 48px;
+        width: 100%;
+
+        @include desktop {
+            margin-top: 38px;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .workflow-step {
+                &:nth-of-type(2) {
+                    margin-top: 40px;
+                }
+
+                &:nth-of-type(3) {
+                    margin-top: 80px;
+                }
+            }
+        }
+    }
+
+    &__connector {
+        width: 1px;
+        height: 40px;
+        border-left: 2px dashed $base-color;
+        align-self: flex-start;
+        margin-left: 60px;
+
+        @include desktop {
+            border: none;
+            margin: 0 5px;
+            min-width: 70px;
+            height: 1px;
+            border-top: 2px dashed $base-color;
+
+            &:nth-of-type(1) {
+                margin-top: 100px;
+            }
+
+            &:nth-of-type(2) {
+                margin-top: 150px;
+            }
+        }
+    }
+}

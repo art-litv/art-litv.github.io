@@ -1,0 +1,43 @@
+.button {
+    height: 50px;
+    max-width: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+    border: none;
+
+    &_primary-btn {
+        background: $primary-btn-bg-color;
+        box-shadow: 0px 10px 40px rgba(25, 104, 252, 0.3);
+        color: $primary-btn-text-color;
+        text-shadow: 0px 10px 40px rgba(25, 104, 252, 0.2);
+        transition: 0.2s all;
+
+        &:hover {
+            border: 1px solid $primary-btn-bg-color;
+            background: transparent;
+            color: $base-font-color;
+            box-shadow: none;
+        }
+    }
+
+    &_secondary-btn {
+        max-width: 320px;
+        background: $secondary-btn-bg-color;
+        color: $secondary-btn-text-color;
+        box-shadow: 4px 4px 20px rgba(255, 255, 255, 0.4);
+        transition: 0.2s all;
+
+        &:hover {
+            border: 1px solid $secondary-btn-bg-color;
+            background: transparent;
+            color: $text-white-color;
+            box-shadow: none;
+        }
+    }
+}

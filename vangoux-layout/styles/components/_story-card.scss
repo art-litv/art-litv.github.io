@@ -1,0 +1,60 @@
+.story-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+
+    &__image {
+        margin-top: 4px;
+    }
+
+    &__title {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 40px;
+        color: #111;
+    }
+
+    &__description {
+        font-size: 16px;
+        line-height: 30px;
+        color: #000;
+        margin-top: 19px;
+        max-width: 460px;
+
+        @include desktop {
+            max-width: 420px;
+        }
+
+        &:last-child {
+            min-height: 240px;
+        }
+    }
+
+    &__paragraph {
+        margin: 0 0 30px 0;
+
+        &:last-child {
+            margin: 0;
+        }
+
+        &_mobile {
+            @include desktop {
+                display: none;
+            }
+        }
+
+        &_desktop {
+            display: none;
+
+            @include desktop {
+                display: block;
+            }
+        }
+    }
+
+    &__link {
+        color: #000;
+        text-decoration: underline;
+        -webkit-text-decoration-skip: none;
+    }
+}

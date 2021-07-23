@@ -1,0 +1,44 @@
+.page-footer {
+    min-height: 130px;
+    margin: 61px 0 90px 0;
+    padding: 40px calc-mobile-padding(40) 0 calc-mobile-padding(40);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    background: #fbfbfb;
+
+    @include desktop {
+        margin: 120px 0 0;
+        padding: 40px calc-desktop-padding(160) 0 calc-desktop-padding(160);
+    }
+
+    &__links {
+        display: flex;
+        align-items: flex-start;
+        gap: 3px;
+
+        @include desktop {
+            margin-top: 10px;
+        }
+    }
+
+    &__link {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__illustration {
+        height: 60px;
+        align-self: flex-end;
+        margin-left: auto;
+        filter: drop-shadow(2px 6px 12px rgba(255, 131, 51, 0.3));
+
+        @include desktop {
+            height: 100px;
+            filter: drop-shadow(4px 10px 20px rgba(255, 131, 51, 0.3));
+        }
+    }
+}
