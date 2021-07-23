@@ -4,7 +4,7 @@
 
 ### 🔗 [Project layout link](https://art-litv.github.io/price-cards-layout/)
 
-📏 Layout supports mobile (up-to-640) and desktop (up-to-1440) versions
+📏 Layout supports only desktop (1440) version
 
 ### 🧰 The tech stack is:
 
