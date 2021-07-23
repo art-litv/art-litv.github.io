@@ -1,0 +1,127 @@
+.price-card {
+    position: relative;
+    overflow: hidden;
+    min-width: 380px;
+    height: 770px;
+    color: #fff;
+    background-color: $price-card-bg-color;
+    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.087466);
+
+    &_green {
+        .price-card {
+            &__price,
+            &__order-btn {
+                background-color: $price-card-green-theme;
+            }
+
+            &__option-item::before {
+                content: url('./icons/icon-green.svg');
+                margin: 0 22px;
+            }
+        }
+    }
+
+    &_blue {
+        .price-card {
+            &__price,
+            &__order-btn {
+                background-color: $price-card-blue-theme;
+            }
+
+            &__option-item::before {
+                content: url('./icons/icon-blue.svg');
+                margin: 0 22px;
+            }
+        }
+    }
+
+    &_orange {
+        .price-card {
+            &__price,
+            &__order-btn {
+                background-color: $price-card-orange-theme;
+            }
+
+            &__description {
+                font-weight: 400;
+            }
+
+            &__option-item::before {
+                content: url('./icons/icon-orange.svg');
+                margin: 0 22px;
+            }
+        }
+    }
+
+    &__title {
+        font-size: 35px;
+        line-height: 43px;
+        font-weight: 700;
+        text-align: center;
+        margin: 33px 0;
+    }
+
+    &__subtitle {
+        display: block;
+        font-size: 20px;
+        font-weight: $base-font-weight;
+        line-height: 24px;
+    }
+
+    &__price {
+        height: 105px;
+        font-size: 55px;
+        line-height: 105px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    &__description {
+        margin: 40px auto auto;
+        font-size: 15px;
+        line-height: 18px;
+        text-align: center;
+        max-width: 327px;
+    }
+
+    &__options-list {
+        margin: 40px 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__option-item {
+        height: 50px;
+        font-size: 15px;
+        line-height: 50px;
+
+        &:nth-child(odd) {
+            background-color: #2a3438;
+        }
+    }
+
+    &__order-btn {
+        width: 154px;
+        height: 40px;
+        font-weight: 400;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: white;
+        border-radius: 20px;
+        border: none;
+        display: block;
+        margin: 39px auto auto;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+
+    &__popular-wrap {
+        position: absolute;
+        transform: rotate(45deg);
+        right: -31px;
+        top: 31px;
+    }
+}

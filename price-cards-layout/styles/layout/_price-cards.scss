@@ -1,0 +1,13 @@
+.price-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    background-color: $price-cards-bg-color;
+    min-height: 100vh;
+
+    @include small-screen {
+        flex-direction: column;
+        padding: 15% 0;
+    }
+}
