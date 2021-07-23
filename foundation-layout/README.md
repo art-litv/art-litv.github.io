@@ -2,7 +2,7 @@
 
   <img  src="./layout-images/image-desktop.png"  width="1000">
 
-### 🔗 [Project layout link](https://art-litv.github.io/price-cards-layout/)
+### 🔗 [Project layout link](https://art-litv.github.io/foundation-layout/)
 
 📏 Layout supports mobile (320) and desktop (1400) versions
 
