@@ -29,12 +29,6 @@ HTML tag classes are named according to the BEM methodology
 
 Folder where all the project icons are stored.
 
-#### IMG
-
-Folder where all the project images (larger than icons) are stored. For example backgrounds.
-
-In the current project the folder is empty as the images are downloaded from the remote server as the page loads.
-
 #### LAYOUT IMAGES
 
 Contains layout images for mobile and desktop versions

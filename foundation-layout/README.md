@@ -25,18 +25,6 @@
 HTML sections are divided with comments.
 HTML tag classes are named according to the BEM methodology
 
-#### ICONS
-
-Folder where all the project icons are stored.
-
-In the current project the folder is empty as the images are downloaded from the remote server as the page loads.
-
-#### IMG
-
-Folder where all the project images (larger than icons) are stored. For example backgrounds.
-
-In the current project the folder is empty as the images are downloaded from the remote server as the page loads.
-
 #### LAYOUT IMAGES
 
 Contains layout images for mobile and desktop versions
