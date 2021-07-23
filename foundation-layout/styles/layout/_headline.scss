@@ -1,0 +1,89 @@
+.headline {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 35px;
+
+    @include desktop-screen {
+        width: 1140px;
+        margin: auto;
+        margin-top: 84px;
+        position: relative;
+        z-index: 1;
+    }
+
+    &__content {
+        margin: 0 15px 33px;
+
+        @include desktop-screen {
+            margin: 0;
+        }
+    }
+
+    &__title {
+        margin: 0;
+        font-weight: bold;
+        font-size: 50px;
+        line-height: 50px;
+        letter-spacing: -0.3125px;
+
+        @include desktop-screen {
+            width: 754px;
+            height: 165px;
+            font-size: 80px;
+            line-height: 78px;
+            letter-spacing: -0.5px;
+        }
+    }
+
+    &__description {
+        font-size: 24px;
+        line-height: 34px;
+        margin: 24px 0 30px;
+
+        @include desktop-screen {
+            margin: 34px 0 58px;
+            width: 456px;
+            height: 102px;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        @include desktop-screen {
+            gap: 10px;
+            margin-bottom: 126px;
+            flex-direction: row;
+        }
+    }
+
+    &__button {
+        width: 100%;
+
+        @include desktop-screen {
+            width: 160px;
+
+            &:last-child {
+                width: 158px;
+            }
+        }
+    }
+
+    &__banner {
+        width: 100%;
+        margin-bottom: 36px;
+
+        @include desktop-screen {
+            position: absolute;
+            z-index: -1;
+            right: -105px;
+            top: 0px;
+            max-width: 100%;
+            width: 796px;
+            height: 448px;
+        }
+    }
+}

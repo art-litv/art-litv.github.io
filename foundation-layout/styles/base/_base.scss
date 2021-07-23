@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
+button {
+    cursor: pointer;
+}
+
+.page {
+    width: 100%;
+
+    @include desktop-screen {
+        width: 1400px;
+        min-height: 100vh;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+}
+
+.top-section {
+    background-color: #f3c6bd;
+
+    @include desktop-screen {
+        padding-top: 39px;
+    }
+}

@@ -1,0 +1,16 @@
+.additional-navigation {
+    display: flex;
+    gap: 29px;
+
+    &__title {
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 28px;
+        margin-top: 0;
+        margin-bottom: 18px;
+    }
+
+    &__list {
+        width: 265px;
+    }
+}

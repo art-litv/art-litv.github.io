@@ -1,0 +1,49 @@
+.header {
+    height: 64px;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+
+    @include desktop-screen {
+        width: 1140px;
+        height: 62px;
+        margin: auto;
+        display: flex;
+        background-color: #f3c6bd;
+    }
+
+    &__button,
+    &__navigation,
+    &__logo-description {
+        display: none;
+
+        @include desktop-screen {
+            display: block;
+        }
+    }
+
+    &__logo-image {
+        margin-left: 15px;
+    }
+
+    &__menu-button {
+        width: 58px;
+        border: none;
+        border-left: 1px solid #00000026;
+        height: 100%;
+        margin-left: auto;
+        background: transparent;
+
+        @include desktop-screen {
+            display: none;
+        }
+    }
+
+    &__menu-icon {
+        display: inline-block;
+        width: 18px;
+        height: 13px;
+        background-image: url('https://gromcode.s3.eu-central-1.amazonaws.com/front-end/html-css/lesson24/hw1/icon-hamburger.png');
+    }
+}
