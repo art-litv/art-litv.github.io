@@ -1,6 +1,6 @@
 # 🗺️ Foundation website layout
 
-  <img  src="./layout-images/layout-image.png"  width="1000">
+  <img  src="./layout-images/image-desktop.png"  width="1000">
 
 ### 🔗 [Project layout link](https://art-litv.github.io/price-cards-layout/)
 
