@@ -31,13 +31,13 @@ button {
     justify-content: center;
     align-items: center;
     min-height: 100%;
-    max-width: 350px;
 
     &__content {
         background: #fff;
         padding: 16px;
         border: 1px solid #ccc;
         border-radius: 8px;
+        width: 350px;
     }
 }
 
@@ -58,6 +58,7 @@ button {
         padding: 16px;
         border: 1px solid #ccc;
         border-radius: 8px;
+        width: 350px;
     }
 }
 

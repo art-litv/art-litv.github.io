@@ -42,13 +42,13 @@ button:hover {
   justify-content: center;
   align-items: center;
   min-height: 100%;
-  max-width: 350px;
 }
 .modal__content {
   background: #fff;
   padding: 16px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  width: 350px;
 }
 
 .overlay {
@@ -67,6 +67,7 @@ button:hover {
   padding: 16px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  width: 350px;
 }
 
 .hidden {
