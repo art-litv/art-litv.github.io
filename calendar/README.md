@@ -1,5 +1,7 @@
 # 📅 Calendar app
 
+## ['App link'](https://art-litv.github.io/calendar)
+
 <img src="./app.png" alt="drawing" width="700"/>
 
 ## 🗃️ Project structure
