@@ -45,12 +45,16 @@ export const validators = {
             : undefined
     },
 
-    isInvalidEventTime(eventToCheck) {
+    isInvalidEventTime(eventToCheck, minTimeDiff = 30) {
+        // Если между промежутками меньше `minTimeDiff` минут или start > end,
+        // тогда время события некорректное
         const eventTimeDiffMinutes = Math.floor(
-            Math.abs(eventToCheck.end - eventToCheck.start) / 1000 / 60
+            (eventToCheck.end - eventToCheck.start) / 1000 / 60
         )
 
-        return eventTimeDiffMinutes < 30 ? 'invalidEventTime' : undefined
+        return eventTimeDiffMinutes < minTimeDiff
+            ? 'invalidEventTime'
+            : undefined
     },
 }
 
