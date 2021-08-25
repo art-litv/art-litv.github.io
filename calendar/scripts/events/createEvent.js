@@ -33,11 +33,7 @@ export function setEventFormFields(dateStart) {
                 eventFormFieldElem.value = stringifyTime(dateStart)
                 break
             case 'endTime':
-                const dateEnd = shmoment(dateStart)
-                    .add('hours', 1)
-                    .subtract('minutes', 1)
-                    .result()
-
+                const dateEnd = shmoment(dateStart).add('minutes', 59).result()
                 eventFormFieldElem.value = stringifyTime(dateEnd)
                 break
             default:
