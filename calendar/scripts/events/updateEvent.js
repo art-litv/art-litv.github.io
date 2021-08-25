@@ -49,6 +49,7 @@ function validateUpdatedEvent(formData, selectedEventId) {
     const errors = validateEvent(validatedEvent, [
         (event) => validators.isEventCrossing(event, [selectedEventId]),
         validators.exceedsTimeLength,
+        validators.isInvalidEventTime,
     ])
 
     return errors.filter((error) => error)

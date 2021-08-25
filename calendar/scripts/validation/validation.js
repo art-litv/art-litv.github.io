@@ -5,10 +5,12 @@ const errorMessages = {
     exceedsTimeLength: `Event exceeds the maximum time length of ${getItem(
         'maxEventLength'
     )} hours`,
+    invalidEventTime:
+        "Time gap between event's start and end must be at least 30 minutes",
 }
 
 export const validators = {
-    // использовать excludedEvents при валидации обновляемого события,
+    // использовать excludedEventsIds при валидации обновляемого события,
     // обновляемое событие нужно исключить из массива событий для
     // проверки на пересечение
     isEventCrossing(eventToCheck, excludedEventsIds) {
@@ -41,6 +43,14 @@ export const validators = {
         return eventTimeLengthMinutes > timeLengthMinutes
             ? 'exceedsTimeLength'
             : undefined
+    },
+
+    isInvalidEventTime(eventToCheck) {
+        const eventTimeDiffMinutes = Math.floor(
+            Math.abs(eventToCheck.end - eventToCheck.start) / 1000 / 60
+        )
+
+        return eventTimeDiffMinutes < 30 ? 'invalidEventTime' : undefined
     },
 }
 

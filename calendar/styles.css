@@ -42,6 +42,7 @@ button:hover {
   justify-content: center;
   align-items: center;
   min-height: 100%;
+  max-width: 350px;
 }
 .modal__content {
   background: #fff;

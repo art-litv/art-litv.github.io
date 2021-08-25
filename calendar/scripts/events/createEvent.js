@@ -51,6 +51,7 @@ function validateNewEvent(newEvent) {
     const errors = validateEvent(newEvent, [
         validators.isEventCrossing,
         validators.exceedsTimeLength,
+        validators.isInvalidEventTime,
     ])
 
     return errors.filter((error) => error)
