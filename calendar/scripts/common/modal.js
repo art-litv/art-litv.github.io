@@ -6,7 +6,6 @@ export function openModal() {
     modalElem.style.left = `50%`
     modalElem.style.transform = `translate(-50%, -50%)`
 
-    // Очистика прошлых выводов ошибок
     document.querySelectorAll('.error-text').forEach((errorTextElem) => {
         errorTextElem.remove()
     })

@@ -13,5 +13,6 @@ module.exports = {
         'import/extensions': 0,
         radix: 0,
         'prefer-rest-params': 0,
+        'no-case-declarations': 0,
     },
 }

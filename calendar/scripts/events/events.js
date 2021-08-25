@@ -6,7 +6,7 @@ import {
 } from '../common/time.utils.js'
 import { openPopup } from '../common/popup.js'
 
-function setUpdateFormFields(eventToUpdate) {
+export function setUpdateFormFields(eventToUpdate) {
     const updateFormFieldElems = document
         .querySelector('.update-event-form')
         .querySelectorAll('.update-event-form__field')

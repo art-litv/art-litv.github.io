@@ -47,9 +47,22 @@ function onCloseEventForm() {
     clearEventForm()
 }
 
+function validateNewEvent(newEvent) {
+    const errors = validateEvent(newEvent, [
+        validators.isEventCrossing,
+        validators.exceedsTimeLength,
+    ])
+
+    return errors.filter((error) => error)
+}
+
 function onCreateEvent(event) {
     event.preventDefault()
     const formData = new FormData(eventFormElem)
+
+    document.querySelectorAll('.error-text').forEach((errorTextElem) => {
+        errorTextElem.remove()
+    })
 
     const date = formData.get('date') || new Date()
 
@@ -61,16 +74,12 @@ function onCreateEvent(event) {
         end: getDateTime(date, formData.get('endTime')),
     }
 
-    const errors = validateEvent(newEvent, [
-        validators.isEventCrossing,
-        validators.exceedsTimeLength,
-    ])
-
-    const foundErrors = errors.filter((error) => error)
+    const foundErrors = validateNewEvent(newEvent)
     if (foundErrors.length) {
         foundErrors.forEach((foundError) => {
             eventFormElem.innerHTML += `<span class="error-text">${foundError}</span>`
         })
+        setEventFormFields(newEvent.start)
         return
     }
 

@@ -8,8 +8,15 @@ const errorMessages = {
 }
 
 export const validators = {
-    isEventCrossing(eventToCheck) {
-        const events = getItem('events')
+    // использовать excludedEvents при валидации обновляемого события,
+    // обновляемое событие нужно исключить из массива событий для
+    // проверки на пересечение
+    isEventCrossing(eventToCheck, excludedEventsIds) {
+        let events = [...getItem('events')]
+        events = excludedEventsIds
+            ? events.filter((event) => !excludedEventsIds.includes(event.id))
+            : events
+
         const crossingEvent = events.find(
             (event) =>
                 (eventToCheck.start <= event.start &&

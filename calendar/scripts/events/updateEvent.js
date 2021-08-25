@@ -1,7 +1,12 @@
 import { getItem, setItem } from '../common/storage.js'
 import { getDateTime } from '../common/time.utils.js'
 import { closePopup } from '../common/popup.js'
-import { renderEvents, handleEventClick } from './events.js'
+import {
+    renderEvents,
+    handleEventClick,
+    setUpdateFormFields,
+} from './events.js'
+import { validators, validateEvent } from '../validation/validation.js'
 
 const weekElem = document.querySelector('.calendar__week')
 const deleteEventBtn = document.querySelector('.delete-event-btn')
@@ -32,14 +37,44 @@ function updateEvent(eventToUpdate, title, description, start, end) {
     eventToUpdate.end = end
 }
 
+function validateUpdatedEvent(formData, selectedEventId) {
+    const validatedEvent = {
+        id: selectedEventId,
+        title: formData.get('title') || '(No title)',
+        description: formData.get('description'),
+        start: getDateTime(formData.get('date'), formData.get('startTime')),
+        end: getDateTime(formData.get('date'), formData.get('endTime')),
+    }
+
+    const errors = validateEvent(validatedEvent, [
+        (event) => validators.isEventCrossing(event, [selectedEventId]),
+        validators.exceedsTimeLength,
+    ])
+
+    return errors.filter((error) => error)
+}
+
 export function onUpdateEvent(event) {
     event.preventDefault()
     const formData = new FormData(updateEventFormElem)
+
+    document.querySelectorAll('.error-text').forEach((errorTextElem) => {
+        errorTextElem.remove()
+    })
 
     const selectedEventId = getItem('selectedEventId')
     const eventToUpdate = getItem('events').find((calendarEvent) => {
         return calendarEvent.id === selectedEventId
     })
+
+    const foundErrors = validateUpdatedEvent(formData, selectedEventId)
+    if (foundErrors.length) {
+        foundErrors.forEach((foundError) => {
+            updateEventFormElem.innerHTML += `<span class="error-text">${foundError}</span>`
+        })
+        setUpdateFormFields(eventToUpdate)
+        return
+    }
 
     updateEvent(
         eventToUpdate,
