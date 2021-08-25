@@ -22,10 +22,18 @@ export const validators = {
     },
 
     exceedsTimeLength(eventToCheck, timeLength = 6) {
-        const eventTimeLength =
-            eventToCheck.end.getHours() - eventToCheck.start.getHours()
+        const eventTimeLengthMili = Math.abs(
+            eventToCheck.end - eventToCheck.start
+        )
 
-        return eventTimeLength > timeLength ? 'exceedsTimeLength' : undefined
+        const timeLengthMinutes = timeLength * 60
+        const eventTimeLengthMinutes = Math.floor(
+            eventTimeLengthMili / 1000 / 60
+        )
+
+        return eventTimeLengthMinutes > timeLengthMinutes
+            ? 'exceedsTimeLength'
+            : undefined
     },
 }
 
