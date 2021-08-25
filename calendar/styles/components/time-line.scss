@@ -1,0 +1,22 @@
+.time-line {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    transform: translateX(-10px);
+
+    &__circle {
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: red;
+    }
+
+    &__bar {
+        height: 8px;
+        width: $col-width - 10px;
+        border-radius: 5px;
+        background: red;
+        transform: translateX(-5px);
+    }
+}
