@@ -4,6 +4,7 @@
     align-items: center;
     z-index: 1;
     transform: translateX(-10px);
+    width: 100%;
 
     &__circle {
         height: 20px;
@@ -13,10 +14,11 @@
     }
 
     &__bar {
+        position: absolute;
         height: 8px;
-        width: $col-width - 10px;
+        width: 100%;
         border-radius: 5px;
         background: red;
-        transform: translateX(-5px);
+        transform: translateX(10px);
     }
 }

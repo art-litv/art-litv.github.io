@@ -1,5 +1,4 @@
 /* ABSTRACTS */
-/* CALENDAR */
 /* EVENT */
 /* BASE */
 * {
@@ -95,7 +94,7 @@ button:hover {
   align-items: center;
   justify-content: center;
   gap: 30px;
-  width: 200px;
+  width: 100%;
   height: 130px;
   opacity: 0.75;
 }
@@ -107,9 +106,6 @@ button:hover {
   font-size: 24px;
 }
 
-.calendar {
-  scroll-margin-top: 5px;
-}
 .calendar__header {
   position: fixed;
   padding: 0 80px;
@@ -117,6 +113,7 @@ button:hover {
   display: flex;
   background-color: #fff;
   z-index: 2;
+  width: 100%;
 }
 .calendar__week-container {
   margin-top: 185px;
@@ -124,9 +121,11 @@ button:hover {
 }
 .calendar__week {
   display: flex;
+  width: 100%;
+  padding-right: 80px;
 }
 .calendar__day {
-  width: 200px;
+  width: 100%;
 }
 .calendar__day:last-child .calendar__time-slot {
   border-right: none;
@@ -184,7 +183,7 @@ button:hover {
 
 .event {
   position: absolute;
-  width: 150px;
+  width: 80%;
   border-radius: 5px;
   background-color: #6495ed;
   color: white;
@@ -215,6 +214,7 @@ button:hover {
   align-items: center;
   z-index: 1;
   transform: translateX(-10px);
+  width: 100%;
 }
 .time-line__circle {
   height: 20px;
@@ -223,11 +223,12 @@ button:hover {
   background: red;
 }
 .time-line__bar {
+  position: absolute;
   height: 8px;
-  width: 190px;
+  width: 100%;
   border-radius: 5px;
   background: red;
-  transform: translateX(-5px);
+  transform: translateX(10px);
 }
 
 /* LAYOUT */
@@ -237,6 +238,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   position: relative;
+  margin: 0;
 }
 
 .header {
