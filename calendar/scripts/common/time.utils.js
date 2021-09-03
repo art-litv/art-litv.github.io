@@ -39,14 +39,12 @@ export const stringifyTime = (date) => {
     return `${hours}:${minutes}`
 }
 
+// returns date in format yyyy-MM-dd
 export const stringifyDate = (date) => {
     const year = date.getFullYear()
-    const month = shmoment(date)
-        .add('months', 1)
-        .result()
-        .getMonth()
-        .toString()
-        .padStart(2, '0')
+
+    // date.getMonth() returns month from 0 to 11, so 1 needs to be added
+    const month = (date.getMonth() + 1).toString().padStart(2, '0')
     const day = date.getDate().toString().padStart(2, '0')
 
     return `${year}-${month}-${day}`

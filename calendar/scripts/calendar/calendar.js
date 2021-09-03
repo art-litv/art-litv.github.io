@@ -30,10 +30,22 @@ function handleTimeSlotClick({ target }) {
     if (target.classList.contains('calendar__time-slot')) {
         openModal()
 
-        const [monthName, year] = document
+        const dateData = document
             .querySelector('.navigation__displayed-month')
             .textContent.split(' ')
+
+        const year = dateData[dateData.length - 1]
         const monthDay = target.closest('.calendar__day').dataset.day
+        let monthName
+
+        // if there are 2 months displayed: Month1 - Month2 20xx
+        if (dateData.length === 4) {
+            monthName =
+                +monthDay <= 31 && +monthDay > 25
+                    ? dateData[0] // Month1 - Month2 => Month1
+                    : dateData[2] // Month1 - Month2 => Month2
+        }
+
         const startTime = target.dataset.time
         const dateStart = new Date(
             `${monthName} ${monthDay} ${year} ${startTime}:00:00`

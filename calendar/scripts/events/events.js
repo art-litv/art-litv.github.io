@@ -7,9 +7,9 @@ import {
 import { openPopup } from '../common/popup.js'
 
 export function setUpdateFormFields(eventToUpdate) {
-    const updateFormFieldElems = document
-        .querySelector('.update-event-form')
-        .querySelectorAll('.update-event-form__field')
+    const updateFormFieldElems = document.querySelectorAll(
+        '.update-event-form__field'
+    )
 
     updateFormFieldElems.forEach((updateFormFieldElem) => {
         switch (updateFormFieldElem.name) {

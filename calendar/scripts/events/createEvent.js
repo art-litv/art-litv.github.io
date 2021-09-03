@@ -20,9 +20,7 @@ function clearEventForm() {
 }
 
 export function setEventFormFields(dateStart) {
-    const eventFormFieldElems = document
-        .querySelector('.event-form')
-        .querySelectorAll('.event-form__field')
+    const eventFormFieldElems = document.querySelectorAll('.event-form__field')
 
     eventFormFieldElems.forEach((eventFormFieldElem) => {
         switch (eventFormFieldElem.name) {
