@@ -1,28 +1,13 @@
-const storage = {
-    // используется для update / delete операций
-    selectedEventId: null,
-    // хранит дату понедельника той отображаемой недели
-    displayedWeekStart: null,
-    // максимальный временной промежуток при создании события (в часах)
-    maxEventLength: 6,
-    // хранит массив всех событий
-    events: [],
-    // это все данные, которые вам нужно хранить для работы приложения
-}
-
 export const setItem = (key, value) => {
-    storage[key] = value
-}
+	localStorage.setItem(key, JSON.stringify(value));
+};
 
-export const getItem = (key) => {
-    return storage[key]
-}
+export const getItem = (key) => JSON.parse(localStorage.getItem(key));
 
-// пример объекта события
-// const eventExample = {
-//     id: 0.7520027086457333, // id понадобится для работы с событиями
-//     title: 'Title',
-//     description: 'Some description',
-//     start: new Date('2020-03-17T01:10:00.000Z'),
-//     end: new Date('2020-03-17T04:30:00.000Z'),
-// }
+//const tasks = [
+//	{ id: 1, text: "Buy milk", isDone: false },
+//	{ id: 2, text: "Pick up Tom from airport", isDone: false },
+//	{ id: 3, text: "Visit party", isDone: false },
+//	{ id: 4, text: "Visit doctor", isDone: true },
+//	{ id: 5, text: "Buy meat", isDone: true },
+//];

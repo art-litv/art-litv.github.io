@@ -1,22 +1,10 @@
-import { renderTimescale } from './calendar/timescale.js'
-import { renderWeek } from './calendar/calendar.js'
-import { renderHeader } from './calendar/header.js'
-import { initNavigation } from './header/navigation.js'
-import { setItem } from './common/storage.js'
-import { getStartOfWeek } from './common/time.utils.js'
-import { initEventForm } from './events/createEvent.js'
-import { initUpdateEventForm } from './events/updateEvent.js'
-import { renderTimeLine } from './calendar/time-line.js'
+import { renderTasks } from "./common/renderer.js";
+import "./tasks/createTask.js";
+import { getItem } from "./common/storage.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-    // инициализация всех элементов
-    renderTimescale()
-    setItem('displayedWeekStart', getStartOfWeek(new Date()))
-    renderWeek()
-    renderHeader()
-    initNavigation()
-    initEventForm()
-    initUpdateEventForm()
-    renderTimeLine()
-    setInterval(renderTimeLine, 60000)
-})
+const renderCurrentTasks = () => {
+	renderTasks(getItem("tasksList"));
+};
+
+document.addEventListener("DOMContentLoaded", renderCurrentTasks);
+window.addEventListener("storage", renderCurrentTasks);
