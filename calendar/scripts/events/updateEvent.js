@@ -56,7 +56,8 @@ export function onUpdateEvent(event) {
   });
 
   const selectedEventId = getItem('selectedEventId');
-  const eventToUpdate = getItem('events').find(calendarEvent => {
+  const events = getItem('events');
+  const eventToUpdate = events.find(calendarEvent => {
     return calendarEvent.id === selectedEventId;
   });
 
@@ -77,6 +78,8 @@ export function onUpdateEvent(event) {
     getDateTime(formData.get('date'), formData.get('endTime')),
   );
 
+  setItem('events', events);
+
   clearUpdateEventForm();
   closePopup();
 
@@ -95,7 +98,6 @@ function onDeleteEvent() {
     'events',
     events.filter(({ id }) => id !== selectedEventId),
   );
-
   setItem('selectedEventId', null);
 
   closePopup();

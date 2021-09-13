@@ -8,15 +8,15 @@
 
 ### 💡 scripts
 
--   contains all app logic, including rendering most of the HTML components and reacting to user's actions
+- contains all app logic, including rendering most of the HTML components and reacting to user's actions
 
 ### 💅 styles
 
--   contains all app styles (scss)
+- contains all app styles (scss)
 
 ### 📁 main directory
 
--   contains configuration files, compiled styles and images
+- contains configuration files, compiled styles and images
 
 ### ➡️ To start:
 

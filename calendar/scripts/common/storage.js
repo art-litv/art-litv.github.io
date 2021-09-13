@@ -1,3 +1,4 @@
+/*
 const storage = {
   // используется для update / delete операций
   selectedEventId: null,
@@ -9,13 +10,22 @@ const storage = {
   events: [],
   // это все данные, которые вам нужно хранить для работы приложения
 };
+*/
 
 export const setItem = (key, value) => {
-  storage[key] = value;
+  localStorage.setItem(key, JSON.stringify(value));
 };
 
 export const getItem = key => {
-  return storage[key];
+  const value = JSON.parse(localStorage.getItem(key));
+  console.log(localStorage.getItem('events'));
+  if (Array.isArray(value)) {
+    value.forEach(event => {
+      event.start = new Date(event.start);
+      event.end = new Date(event.end);
+    });
+  }
+  return Date.parse(value) ? new Date(value) : value;
 };
 
 // пример объекта события

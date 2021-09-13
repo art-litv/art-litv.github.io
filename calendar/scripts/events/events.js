@@ -61,11 +61,9 @@ const createEventElement = event => {
 
   const eventTime = document.createElement('span');
   eventTime.classList.add('event__time');
-
   eventTime.textContent = `${stringifyTime(event.start)} - ${stringifyTime(event.end)}`;
 
   eventElem.append(eventTitle, eventTime);
-
   const pxPerHour = document.querySelector('.calendar__time-slot').offsetHeight;
 
   // Количество часов между началом и окончанием события
