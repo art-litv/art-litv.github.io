@@ -104,9 +104,9 @@ deleteEventBtn.addEventListener('click', () => {
     alert('Could not update event');
   }
 });
-weekElem.addEventListener('click', () => {
+weekElem.addEventListener('click', event => {
   try {
-    handleEventClick();
+    handleEventClick(event);
   } catch (err) {
     alert('Could not fetch event data');
   }
