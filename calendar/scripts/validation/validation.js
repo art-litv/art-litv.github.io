@@ -1,4 +1,5 @@
 import { getItem } from '../common/storage.js';
+import { getEvents } from '../common/api.js';
 
 const errorMessages = {
   eventCrossing: 'Event at the specified time already exists',
@@ -7,14 +8,15 @@ const errorMessages = {
 };
 
 export const validators = {
-  // использовать excludedEventsIds при валидации обновляемого события,
-  // обновляемое событие нужно исключить из массива событий для
-  // проверки на пересечение
-  isEventCrossing(eventToCheck, excludedEventsIds) {
-    let events = [...getItem('events')];
-    events = excludedEventsIds
-      ? events.filter(event => !excludedEventsIds.includes(event.id))
-      : events;
+  async isEventCrossing(eventToCheck) {
+    let events;
+    try {
+      events = await getEvents();
+    } catch (err) {
+      alert('Could not fetch events');
+      return undefined;
+    }
+    events = events.filter(event => event.id !== eventToCheck.id);
 
     const crossingEvent = events.find(
       event =>
@@ -25,7 +27,7 @@ export const validators = {
     return crossingEvent ? 'eventCrossing' : undefined;
   },
 
-  exceedsTimeLength(eventToCheck, timeLength = 6) {
+  async exceedsTimeLength(eventToCheck, timeLength = 6) {
     const eventTimeLengthMili = Math.abs(eventToCheck.end - eventToCheck.start);
 
     const timeLengthMinutes = timeLength * 60;
@@ -34,7 +36,7 @@ export const validators = {
     return eventTimeLengthMinutes > timeLengthMinutes ? 'exceedsTimeLength' : undefined;
   },
 
-  isInvalidEventTime(eventToCheck, minTimeDiff = 30) {
+  async isInvalidEventTime(eventToCheck, minTimeDiff = 30) {
     // Если между промежутками меньше `minTimeDiff` минут или start > end,
     // тогда время события некорректное
     const eventTimeDiffMinutes = Math.floor((eventToCheck.end - eventToCheck.start) / 1000 / 60);
@@ -42,9 +44,11 @@ export const validators = {
   },
 };
 
-export const validateEvent = (event, validatorsArr) => {
-  return validatorsArr.map(validator => {
-    const validationType = validator(event);
+export const validateEvent = async (event, validatorsArr) => {
+  const validationPromises = validatorsArr.map(async validator => {
+    const validationType = await validator(event);
     return errorMessages[validationType];
   });
+
+  return Promise.all(validationPromises);
 };

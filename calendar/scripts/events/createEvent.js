@@ -1,9 +1,9 @@
-import { getItem, setItem } from '../common/storage.js';
 import { renderEvents } from './events.js';
 import { getDateTime, stringifyDate, stringifyTime } from '../common/time.utils.js';
 import { closeModal } from '../common/modal.js';
 import shmoment from '../common/shmoment.js';
 import { validators, validateEvent } from '../validation/validation.js';
+import { createEvent } from '../common/api.js';
 
 const eventFormElem = document.querySelector('.event-form');
 const eventFormFieldElems = eventFormElem.querySelectorAll('.event-form__field');
@@ -35,8 +35,14 @@ function onCloseEventForm() {
   clearEventForm();
 }
 
-function validateNewEvent(newEvent) {
-  const errors = validateEvent(newEvent, [
+function clearErrorText() {
+  document.querySelectorAll('.error-text').forEach(errorTextElem => {
+    errorTextElem.remove();
+  });
+}
+
+async function validateNewEvent(newEvent) {
+  const errors = await validateEvent(newEvent, [
     validators.isEventCrossing,
     validators.exceedsTimeLength,
     validators.isInvalidEventTime,
@@ -45,25 +51,21 @@ function validateNewEvent(newEvent) {
   return errors.filter(error => error);
 }
 
-function onCreateEvent(event) {
+async function onCreateEvent(event) {
   event.preventDefault();
   const formData = new FormData(eventFormElem);
 
-  document.querySelectorAll('.error-text').forEach(errorTextElem => {
-    errorTextElem.remove();
-  });
+  clearErrorText();
 
   const date = formData.get('date') || new Date();
-
   const newEvent = {
-    id: Number(`0.${Date.now()}`),
     title: formData.get('title') || '(No title)',
     description: formData.get('description'),
     start: getDateTime(date, formData.get('startTime')),
     end: getDateTime(date, formData.get('endTime')),
   };
 
-  const foundErrors = validateNewEvent(newEvent);
+  const foundErrors = await validateNewEvent(newEvent);
   if (foundErrors.length) {
     foundErrors.forEach(foundError => {
       eventFormElem.innerHTML += `<span class="error-text">${foundError}</span>`;
@@ -72,8 +74,7 @@ function onCreateEvent(event) {
     return;
   }
 
-  const events = [...getItem('events'), newEvent];
-  setItem('events', events);
+  await createEvent(newEvent);
 
   clearEventForm();
   closeModal();

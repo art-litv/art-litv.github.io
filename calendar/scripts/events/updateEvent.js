@@ -3,6 +3,7 @@ import { getDateTime } from '../common/time.utils.js';
 import { closePopup } from '../common/popup.js';
 import { renderEvents, handleEventClick, setUpdateFormFields } from './events.js';
 import { validators, validateEvent } from '../validation/validation.js';
+import { getEvents, deleteEvent, updateEvent } from '../common/api.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
@@ -22,14 +23,7 @@ function onCloseUpdateEventForm() {
   clearUpdateEventForm();
 }
 
-function updateEvent(eventToUpdate, title, description, start, end) {
-  eventToUpdate.title = title;
-  eventToUpdate.description = description;
-  eventToUpdate.start = start;
-  eventToUpdate.end = end;
-}
-
-function validateUpdatedEvent(formData, selectedEventId) {
+async function validateUpdatedEvent(formData, selectedEventId) {
   const validatedEvent = {
     id: selectedEventId,
     title: formData.get('title') || '(No title)',
@@ -38,8 +32,8 @@ function validateUpdatedEvent(formData, selectedEventId) {
     end: getDateTime(formData.get('date'), formData.get('endTime')),
   };
 
-  const errors = validateEvent(validatedEvent, [
-    event => validators.isEventCrossing(event, [selectedEventId]),
+  const errors = await validateEvent(validatedEvent, [
+    validators.isEventCrossing,
     validators.exceedsTimeLength,
     validators.isInvalidEventTime,
   ]);
@@ -47,7 +41,7 @@ function validateUpdatedEvent(formData, selectedEventId) {
   return errors.filter(error => error);
 }
 
-export function onUpdateEvent(event) {
+export async function onUpdateEvent(event) {
   event.preventDefault();
   const formData = new FormData(updateEventFormElem);
 
@@ -56,10 +50,8 @@ export function onUpdateEvent(event) {
   });
 
   const selectedEventId = getItem('selectedEventId');
-  const events = getItem('events');
-  const eventToUpdate = events.find(calendarEvent => {
-    return calendarEvent.id === selectedEventId;
-  });
+  const events = await getEvents();
+  const eventToUpdate = events.find(calendarEvent => calendarEvent.id === selectedEventId);
 
   const foundErrors = validateUpdatedEvent(formData, selectedEventId);
   if (foundErrors.length) {
@@ -70,15 +62,12 @@ export function onUpdateEvent(event) {
     return;
   }
 
-  updateEvent(
-    eventToUpdate,
-    formData.get('title'),
-    formData.get('description'),
-    getDateTime(formData.get('date'), formData.get('startTime')),
-    getDateTime(formData.get('date'), formData.get('endTime')),
-  );
+  eventToUpdate.title = formData.get('title');
+  eventToUpdate.description = formData.get('description');
+  eventToUpdate.start = getDateTime(formData.get('date'), formData.get('startTime'));
+  eventToUpdate.end = getDateTime(formData.get('date'), formData.get('endTime'));
 
-  setItem('events', events);
+  await updateEvent(eventToUpdate);
 
   clearUpdateEventForm();
   closePopup();
@@ -86,29 +75,42 @@ export function onUpdateEvent(event) {
   renderEvents();
 }
 
-function onDeleteEvent() {
+async function onDeleteEvent() {
   // достаем из storage массив событий и selectedEventId
   // удаляем из массива нужное событие и записываем в storage новый массив
   // закрыть попап
   // перерисовать события на странице в соответствии с новым списком событий в storage (renderEvents)
-  const events = getItem('events');
   const selectedEventId = getItem('selectedEventId');
-
-  setItem(
-    'events',
-    events.filter(({ id }) => id !== selectedEventId),
-  );
+  await deleteEvent(selectedEventId);
   setItem('selectedEventId', null);
 
   closePopup();
   renderEvents();
 }
 
-updateEventFormElem.addEventListener('submit', onUpdateEvent);
+updateEventFormElem.addEventListener('submit', () => {
+  try {
+    onUpdateEvent();
+  } catch (err) {
+    alert('Could not update event');
+  }
+});
 closeUpdateEventFormBtn.addEventListener('click', onCloseUpdateEventForm);
 
-deleteEventBtn.addEventListener('click', onDeleteEvent);
-weekElem.addEventListener('click', handleEventClick);
+deleteEventBtn.addEventListener('click', () => {
+  try {
+    onDeleteEvent();
+  } catch (err) {
+    alert('Could not update event');
+  }
+});
+weekElem.addEventListener('click', () => {
+  try {
+    handleEventClick();
+  } catch (err) {
+    alert('Could not fetch event data');
+  }
+});
 
 export function initUpdateEventForm() {
   updateEventFormElem.addEventListener('submit', onUpdateEvent);

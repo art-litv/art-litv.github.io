@@ -18,12 +18,6 @@ export const setItem = (key, value) => {
 
 export const getItem = key => {
   const value = JSON.parse(localStorage.getItem(key));
-  if (Array.isArray(value)) {
-    value.forEach(event => {
-      event.start = new Date(event.start);
-      event.end = new Date(event.end);
-    });
-  }
   return Date.parse(value) ? new Date(value) : value;
 };
 

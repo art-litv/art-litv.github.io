@@ -1,6 +1,7 @@
 import { getItem, setItem } from '../common/storage.js';
 import { isWithinWeek, stringifyTime, stringifyDate } from '../common/time.utils.js';
 import { openPopup } from '../common/popup.js';
+import { getEvents } from '../common/api.js';
 
 const updateFormFieldElems = document.querySelectorAll('.update-event-form__field');
 
@@ -24,7 +25,7 @@ export function setUpdateFormFields(eventToUpdate) {
   descriptionFieldElem.value = eventToUpdate.description;
 }
 
-export function handleEventClick({ target }) {
+export async function handleEventClick({ target }) {
   // если произошел клик по событию, то нужно паказать попап
   // установите selectedEventId с id события в storage
   if ([...target.classList].some(class_ => class_.startsWith('event'))) {
@@ -36,7 +37,8 @@ export function handleEventClick({ target }) {
     }
 
     const selectedEventId = getItem('selectedEventId');
-    const eventToUpdate = getItem('events').find(event => event.id === selectedEventId);
+    const events = await getEvents();
+    const eventToUpdate = events.find(event => event.id === selectedEventId);
 
     setUpdateFormFields(eventToUpdate);
   }
@@ -76,7 +78,7 @@ const createEventElement = event => {
   return eventElem;
 };
 
-export const renderEvents = () => {
+export const renderEvents = async () => {
   // достаем из storage все события и дату понедельника отображаемой недели
   // фильтруем события, оставляем только те, что входят в текущую неделю
   // создаем для них DOM элементы с помощью createEventElement
@@ -91,7 +93,12 @@ export const renderEvents = () => {
     eventElem.remove();
   });
 
-  const events = getItem('events');
+  let events;
+  try {
+    events = await getEvents();
+  } catch (err) {
+    alert('Could not fetch events');
+  }
   const weekStart = getItem('displayedWeekStart');
 
   const weekEvents = events.filter(event => {
@@ -101,9 +108,9 @@ export const renderEvents = () => {
   });
 
   weekEvents.forEach(weekEvent => {
-    const eventDayElem = Array.from(dayElems).find(
-      dayElem => +dayElem.dataset.day === weekEvent.start.getDate(),
-    );
+    const eventDayElem = Array.from(dayElems).find(dayElem => {
+      return +dayElem.dataset.day === weekEvent.start.getDate();
+    });
 
     const eventTimeSlotElem = eventDayElem.querySelector(
       `.calendar__time-slot[data-time="${weekEvent.start.getHours()}"]`,
