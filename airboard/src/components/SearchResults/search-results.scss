@@ -1,0 +1,14 @@
+.search-results {
+  border-radius: 60px 60px 0 0;
+  background: #fff;
+
+  &__results-table {
+    margin: 50px 0;
+  }
+
+  &__not-found {
+    font-size: 28px;
+    text-align: center;
+    padding: 50px 0;
+  }
+}
