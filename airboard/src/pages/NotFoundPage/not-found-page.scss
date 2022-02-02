@@ -1,0 +1,16 @@
+.not-found-page {
+  padding: 10% 0;
+
+  &__title {
+    color: #fff;
+    -webkit-text-stroke: 2px black;
+    font-size: 100px;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  &__subtitle {
+    font-size: 24px;
+    text-align: center;
+  }
+}
